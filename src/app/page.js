@@ -8,6 +8,9 @@ const Home = () => {
     return (
         <>
             <div className="container mx-auto">
+                <div className='grid grid-cols-12 py-8'>
+                    <LoginLinks/>
+                </div>
                 <div className='grid grid-cols-12 py-6'>
                     <div className='col-span-6 order-1 xl:col-span-2 xl:order-1 px-3 my-3'>
                         PROPERTIES
