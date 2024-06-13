@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/hooks/auth'
 import Properties from '@/components/Properties'
+import Map from '@/components/Map'
 
 
 const HomePage = () => {
@@ -18,7 +19,7 @@ const HomePage = () => {
                 <Properties />
             </div>
             <div className='col-span-12 sm:col-span-8 px-2 my-3'>
-                MAP
+                <Map/>
             </div>
         </div>
     )
