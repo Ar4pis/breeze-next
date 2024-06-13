@@ -9,9 +9,9 @@ const LoginLinks = () => {
     const { logout } = useAuth()
 
     return (
-        <div className="hidden relative top-0 right-0 px-6 py-4 sm:block">
+        <div className="hidden relative px-2 py-4 sm:block">
             {user ? (
-                <div className='text-end'>
+                <div>
                     <h2 className='my-2'>Welcome, {user.name}</h2>
                     <Button onClick={logout}>Logout</Button>
                 </div>

@@ -12,16 +12,13 @@ const HomePage = () => {
     }
 
     return (
-        <div className='grid grid-cols-12 py-6'>
-            <div className='col-span-6 order-1 xl:col-span-2 xl:order-1 px-3 my-3'>
-                PROPERTIES
+        <div className='grid grid-cols-12 pb-6'>
+            <div className='col-span-12 sm:col-span-4 px-2 my-3'>
+                <h2>PROPERTIES</h2>
                 <Properties />
             </div>
-            <div className='col-span-12 order-3 xl:col-span-8 xl:order-2 px-3 my-3'>
+            <div className='col-span-12 sm:col-span-8 px-2 my-3'>
                 MAP
-            </div>
-            <div className='col-span-6 order-2 xl:col-span-2 xl:order-2 px-3 my-3'>
-                ROUTE WAYPOINTS
             </div>
         </div>
     )

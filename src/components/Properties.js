@@ -1,26 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/hooks/auth'
 import { getUserProperties } from '@/hooks/laravelapi';
 import AddNewProperty from './AddNewProperty';
 import PropertiesList from './PropertiesList';
 
 const Properties = () => {
-    const { user } = useAuth({ middleware: 'guest' })
     const [properties, setProperties] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchProperties = async () => {
-            try {
-                const propertiesData = await getUserProperties();
-                setProperties(propertiesData);
-            } catch (error) {
-                console.log(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const fetchProperties = async () => {
+        try {
+            const propertiesData = await getUserProperties();
+            setProperties(propertiesData);
+        } catch (error) {
+            console.log(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchProperties();
     }, []);
 
@@ -30,8 +28,7 @@ const Properties = () => {
     //console.log(user)
     return (
         <div className='my-4'>
-            <h2>Properties Component</h2>
-            <AddNewProperty/>
+            <AddNewProperty onPropertyAdded={fetchProperties}/>
             <PropertiesList properties={properties}/>
         </div>
     )

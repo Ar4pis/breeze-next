@@ -1,16 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { addNewProperty } from '@/hooks/laravelapi';
 
-const AddNewProperty = () => {
+const AddNewProperty = ({ onPropertyAdded }) => {
     const [showForm, setShowForm] = useState(false)
 
     const formClassname = showForm ? 'block' : 'hidden';
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData.entries());
+
         try {
-            response = await addNewProperty(event.target)
-            console.log('add new property form submitted')
+            const response = await addNewProperty(data)
+            onPropertyAdded();
+            setShowForm(false)
         } catch (error) {
             console.log(error.message);
         } 
@@ -22,23 +26,23 @@ const AddNewProperty = () => {
             <div className={formClassname}>
                 <form onSubmit={handleFormSubmit}>
                     <div className='mb-2'>
-                        <label htmlFor="kaek">Kaek<span className='text-red-600'>*</span></label>
+                        <label htmlFor="kaek">Kaek<span className='text-red-600'>*</span></label><br/>
                         <input type="text" id="kaek" name="kaek" required/>
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor="name">Name<span className='text-red-600'>*</span></label>
+                        <label htmlFor="name">Name<span className='text-red-600'>*</span></label><br/>
                         <input type="text" id="name" name="name" required/>
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor="latitude">Latitude<span className='text-red-600'>*</span></label>
+                        <label htmlFor="latitude">Latitude<span className='text-red-600'>*</span></label><br/>
                         <input type="text" id="latitude" name="latitude" required/>
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor="longitude">Longitude<span className='text-red-600'>*</span></label>
+                        <label htmlFor="longitude">Longitude<span className='text-red-600'>*</span></label><br/>
                         <input type="text" id="longitude" name="longitude" required/>
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor="comment">Comment:</label>
+                        <label htmlFor="comment">Comment:</label><br/>
                         <textarea id="comment" name="comment" rows="4"></textarea>
                     </div>
 
