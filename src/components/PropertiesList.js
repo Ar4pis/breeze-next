@@ -1,4 +1,18 @@
+import WaypointsContext from '@/utils/contexts/WaypointsContext';
+import { useContext } from 'react';
+
 const PropertiesList = ({ properties }) => {
+    const { waypoints, addWaypoint, removeWaypoint, deleteWaypoints } = useContext(WaypointsContext);
+
+    const handleWaypoint = (event, property) => {
+        if (event.target.checked) {
+            addWaypoint(property);
+          } else {
+            removeWaypoint(property.id);
+          }
+          console.log(waypoints)
+      }
+
     return (
         <div className='my-2'>
             <ul>
@@ -9,6 +23,10 @@ const PropertiesList = ({ properties }) => {
                         <p><strong>Latitude:</strong> {property.latitude}</p>
                         <p><strong>Longitude:</strong> {property.longitude}</p>
                         <p><strong>Comment:</strong> {property.comment}</p>
+                        <div className='mb-2 flex items-center'>
+                            <input type="checkbox" onClick={(event) => handleWaypoint(event, property)} id={`checkbox-${property.id}`} name={`checkbox-${property.id}`} />
+                            <label htmlFor={`checkbox-${property.id}`} className='ml-2'>Σημείο Διαδρομής</label><br/>
+                        </div>
                     </li>
                 ))}
             </ul>

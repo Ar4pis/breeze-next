@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { addNewProperty } from '@/hooks/laravelapi';
+import { addNewProperty } from '@/utils/laravelapi';
 
 const AddNewProperty = ({ onPropertyAdded }) => {
     const [showForm, setShowForm] = useState(false)

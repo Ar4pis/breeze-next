@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getUserProperties } from '@/hooks/laravelapi';
+import { getUserProperties } from '@/utils/laravelapi';
 import AddNewProperty from './AddNewProperty';
 import PropertiesList from './PropertiesList';
 

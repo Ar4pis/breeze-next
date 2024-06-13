@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google'
 import '@/app/global.css'
+import { WaypointsProvider } from '@/utils/contexts/WaypointsContext'
 
 const nunitoFont = Nunito({
     subsets: ['latin'],
@@ -9,7 +10,9 @@ const nunitoFont = Nunito({
 const RootLayout = ({ children }) => {
     return (
         <html lang="en" className={nunitoFont.className}>
-            <body className="antialiased">{children}</body>
+            <WaypointsProvider>
+                <body className="antialiased">{children}</body>
+            </WaypointsProvider>
         </html>
     )
 }
