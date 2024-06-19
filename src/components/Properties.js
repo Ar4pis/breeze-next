@@ -29,7 +29,7 @@ const Properties = () => {
     return (
         <div className='my-4'>
             <AddNewProperty onPropertyAdded={fetchProperties}/>
-            <PropertiesList properties={properties}/>
+            <PropertiesList properties={properties} onPropertyDeleted={fetchProperties}/>
         </div>
     )
 }
