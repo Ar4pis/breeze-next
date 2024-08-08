@@ -44,7 +44,7 @@ const PropertiesList = ({ properties, onPropertyDeleted }) => {
                             <label htmlFor={`checkbox-${property.id}`} className='ml-2'>Προσθήκη στο Δρομολόγιο</label><br />
                         </div>
                         <div className='mb-2 flex items-center'>
-                            <input type="radio" onChange={(event) => handleStartingPoint(event, property)} id={`radio-${property.id}`} name={`radio-${property.id}`} checked={startingPoint === property.id} />
+                            <input type="radio" onChange={(event) => handleStartingPoint(event, property)} id={`radio-${property.id}`} name={`radio-${property.id}`} checked={startingPoint?.id === property.id} />
                             <label htmlFor={`radio-${property.id}`} className='ml-2'>Αφετηρία</label><br />
                         </div>
                         <div className='mb-2 flex items-center hover:underline hover:cursor-pointer'>

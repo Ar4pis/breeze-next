@@ -1,5 +1,6 @@
 import WaypointsContext from '@/utils/contexts/WaypointsContext';
 import { useEffect, useContext } from 'react';
+import { getOptimizedRoute } from '@/utils/laravelapi';
 
 const CreateRouteButton = () => {
     const { waypoints } = useContext(WaypointsContext);
@@ -13,9 +14,14 @@ const CreateRouteButton = () => {
         console.log(startingPoint)
     }, [startingPoint]);
 
+    const handleCreateRoute = async () => {
+        const response = await getOptimizedRoute(startingPoint, waypoints)
+        console.log(response)
+    }
+
     return (
         <div className='create-route'>
-            <button className='py-2 px-8 border border-gray-600 bg-gray-600 text-white bold' onClick={(event) => handleDeleteProperty(event, property)}>Δημιουργία Δρομολογίου</button>
+            <button className='py-2 px-8 border border-gray-600 bg-gray-600 text-white bold' onClick={() => handleCreateRoute()}>Δημιουργία Δρομολογίου</button>
         </div>
     )
 }

@@ -29,3 +29,17 @@ export async function deleteProperty(id) {
         throw new Error(`Failed to delete new property: ${error.message}`);
     }
 }
+
+export async function getOptimizedRoute(startingPoint, waypoints) {
+    const params = {
+        starting_point: JSON.stringify(startingPoint),
+        waypoints: JSON.stringify(waypoints)
+    };
+    
+    try {
+        const response = await axios.get(`/api/googlemaps`, { params });
+        return response.data;
+    } catch (error) {
+        throw new Error(`Failed getOptimizedRoute: ${error.message}`);
+    }
+}
