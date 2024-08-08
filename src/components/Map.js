@@ -1,12 +1,8 @@
 import WaypointsContext from '@/utils/contexts/WaypointsContext';
 import { useEffect, useContext } from 'react';
 
-const PropertiesList = () => {
+const Map = () => {
     const { waypoints } = useContext(WaypointsContext);
-
-    useEffect(() => {
-        console.log(waypoints)
-    }, [waypoints]);
 
     return (
         <div className='google-maps'>
@@ -15,4 +11,4 @@ const PropertiesList = () => {
     )
 }
 
-export default PropertiesList
+export default Map

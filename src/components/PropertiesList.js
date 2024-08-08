@@ -3,21 +3,31 @@ import { useContext } from 'react';
 import { deleteProperty } from '@/utils/laravelapi';
 
 const PropertiesList = ({ properties, onPropertyDeleted }) => {
-    const { waypoints, addWaypoint, removeWaypoint, deleteWaypoints } = useContext(WaypointsContext);
+    const { waypoints, addWaypoint, removeWaypoint, deleteWaypoints, startingPoint, setStartingPoint, resetStartingPoint } = useContext(WaypointsContext);
 
     const handleWaypoint = (event, property) => {
         if (event.target.checked) {
             addWaypoint(property);
-          } else {
+        } else {
             removeWaypoint(property.id);
-          }
-      }
+            resetStartingPoint(property.id)
+        }
+    }
+
+    const handleStartingPoint = (event, property) => {
+        if (waypoints.some(waypoint => waypoint.id === property.id)) {
+            setStartingPoint(property.id)
+        } else {
+            alert('Πρέπει να γίνει πρώτα προσθήκη της ιδιοκτησίας στο Δρομολόγιο')
+        }
+    }
 
     const handleDeleteProperty = (event, property) => {
-        removeWaypoint(property.id);
+        removeWaypoint(property.id)
         deleteProperty(property.id)
+        resetStartingPoint(property.id)
         onPropertyDeleted()
-      }
+    }
 
     return (
         <div className='my-2'>
@@ -31,7 +41,11 @@ const PropertiesList = ({ properties, onPropertyDeleted }) => {
                         <p><strong>Comment:</strong> {property.comment}</p>
                         <div className='mb-2 flex items-center'>
                             <input type="checkbox" onChange={(event) => handleWaypoint(event, property)} id={`checkbox-${property.id}`} name={`checkbox-${property.id}`} checked={waypoints.some(waypoint => waypoint.id === property.id)} />
-                            <label htmlFor={`checkbox-${property.id}`} className='ml-2'>Σημείο Διαδρομής</label><br/>
+                            <label htmlFor={`checkbox-${property.id}`} className='ml-2'>Προσθήκη στο Δρομολόγιο</label><br />
+                        </div>
+                        <div className='mb-2 flex items-center'>
+                            <input type="radio" onChange={(event) => handleStartingPoint(event, property)} id={`radio-${property.id}`} name={`radio-${property.id}`} checked={startingPoint === property.id} />
+                            <label htmlFor={`radio-${property.id}`} className='ml-2'>Αφετηρία</label><br />
                         </div>
                         <div className='mb-2 flex items-center hover:underline hover:cursor-pointer'>
                             <button className='py-2 px-8 border border-gray-600 bg-gray-600 text-white bold' onClick={(event) => handleDeleteProperty(event, property)}>Διαγραφή</button>

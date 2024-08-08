@@ -5,6 +5,7 @@ const WaypointsContext = createContext();
 
 export const WaypointsProvider = ({ children }) => {
   const [waypoints, setWaypoints] = useState([]);
+  const [startingPoint, setStartingPoint] = useState(0);
 
   const addWaypoint = (waypoint) => {
     setWaypoints((prevWaypoints) => [...prevWaypoints, waypoint]);
@@ -18,8 +19,14 @@ export const WaypointsProvider = ({ children }) => {
     setWaypoints([]);
   };
 
+  const resetStartingPoint = (waypointId) => {
+    if (waypointId === startingPoint) {
+      setStartingPoint(0)
+    }
+  };
+
   return (
-    <WaypointsContext.Provider value={{ waypoints, addWaypoint, removeWaypoint, deleteWaypoints }}>
+    <WaypointsContext.Provider value={{ waypoints, addWaypoint, removeWaypoint, deleteWaypoints, startingPoint, setStartingPoint, resetStartingPoint }}>
       {children}
     </WaypointsContext.Provider>
   );
