@@ -16,7 +16,7 @@ const PropertiesList = ({ properties, onPropertyDeleted }) => {
 
     const handleStartingPoint = (event, property) => {
         if (waypoints.some(waypoint => waypoint.id === property.id)) {
-            setStartingPoint(property.id)
+            setStartingPoint(property)
         } else {
             alert('Πρέπει να γίνει πρώτα προσθήκη της ιδιοκτησίας στο Δρομολόγιο')
         }
