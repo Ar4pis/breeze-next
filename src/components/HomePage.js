@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/auth'
 import Properties from '@/components/Properties'
 import Map from '@/components/Map'
+import Route from '@/components/Route'
 import CreateRouteButton from '@/components/CreateRouteButton'
 
 
@@ -23,6 +24,7 @@ const HomePage = () => {
                 <div className='mb-2'>
                     <CreateRouteButton />
                 </div>
+                <Route />
                 <Map />
             </div>
         </div>

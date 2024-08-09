@@ -3,8 +3,7 @@ import { useEffect, useContext } from 'react';
 import { getRouteMatrix } from '@/utils/laravelapi';
 
 const CreateRouteButton = () => {
-    const { waypoints } = useContext(WaypointsContext);
-    const { startingPoint } = useContext(WaypointsContext);
+    const { waypoints, startingPoint, setOptimalRoute } = useContext(WaypointsContext);
 
     useEffect(() => {
         console.log(waypoints)
@@ -19,6 +18,7 @@ const CreateRouteButton = () => {
         console.log(waypoints)
         const response = await getRouteMatrix(startingPoint, waypoints)
         console.log(response)
+        setOptimalRoute(JSON.parse(response))
     }
 
     return (

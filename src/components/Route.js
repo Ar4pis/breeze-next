@@ -1,7 +1,7 @@
 import WaypointsContext from '@/utils/contexts/WaypointsContext';
 import { useContext } from 'react';
 
-const Map = () => {
+const Route = () => {
     const { optimalRoute } = useContext(WaypointsContext);
 
     if (!optimalRoute) {
@@ -10,9 +10,11 @@ const Map = () => {
 
     return (
         <div className='google-maps mt-4'>
-            <h1 className='text-5xl font-bold my-2'>MAP</h1>
+            <h1 className='text-5xl font-bold my-2'>Δρομολόγιο</h1>
+            <p className='my-2'>{ optimalRoute.route }</p>
+            <p>Duration: { optimalRoute.duration } seconds</p>
         </div>
     )
 }
 
-export default Map
+export default Route
