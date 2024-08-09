@@ -1,6 +1,6 @@
 import WaypointsContext from '@/utils/contexts/WaypointsContext';
 import { useEffect, useContext } from 'react';
-import { getOptimizedRoute } from '@/utils/laravelapi';
+import { getRouteMatrix } from '@/utils/laravelapi';
 
 const CreateRouteButton = () => {
     const { waypoints } = useContext(WaypointsContext);
@@ -15,7 +15,9 @@ const CreateRouteButton = () => {
     }, [startingPoint]);
 
     const handleCreateRoute = async () => {
-        const response = await getOptimizedRoute(startingPoint, waypoints)
+        console.log(startingPoint)
+        console.log(waypoints)
+        const response = await getRouteMatrix(startingPoint, waypoints)
         console.log(response)
     }
 

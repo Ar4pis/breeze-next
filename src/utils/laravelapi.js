@@ -30,7 +30,7 @@ export async function deleteProperty(id) {
     }
 }
 
-export async function getOptimizedRoute(startingPoint, waypoints) {
+export async function getRouteMatrix(startingPoint, waypoints) {
     const params = {
         starting_point: JSON.stringify(startingPoint),
         waypoints: JSON.stringify(waypoints)
